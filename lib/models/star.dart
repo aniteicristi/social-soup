@@ -1,3 +1,5 @@
+import 'package:mongo_dart/mongo_dart.dart';
+
 class Star {
   Star({
     required this.id,
@@ -6,14 +8,14 @@ class Star {
   });
 
   factory Star.fromJson(Map<String, dynamic> json) => Star(
-        id: json['id'],
+        id: json['_id'],
         user: json['user'],
         recipe: json['recipe'],
       );
 
-  String id;
-  String user;
-  String recipe;
+  ObjectId id;
+  ObjectId user;
+  ObjectId recipe;
 
   toJson() => {
         'id': id,

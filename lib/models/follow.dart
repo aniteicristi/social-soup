@@ -1,3 +1,5 @@
+import 'package:mongo_dart/mongo_dart.dart';
+
 class Follow {
   Follow({
     required this.id,
@@ -6,14 +8,14 @@ class Follow {
   });
 
   factory Follow.fromJson(Map<String, dynamic> json) => Follow(
-        id: json['id'],
+        id: json['_id'],
         followed: json['followed'],
         follower: json['follower'],
       );
 
-  String id;
-  String followed;
-  String follower;
+  ObjectId id;
+  ObjectId followed;
+  ObjectId follower;
 
   toJson() => {
         'id': id,

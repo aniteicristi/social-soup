@@ -4,12 +4,13 @@ import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoService {
   static MongoService get to => Get.find();
+  static Db get db => Get.find<MongoService>()._db;
 
-  late Db db;
+  late Db _db;
 
   Future init() async {
     final con = dotenv.get('MONGO_CONNECTION');
-    this.db = await Db.create(con);
-    await db.open();
+    this._db = await Db.create(con);
+    await _db.open();
   }
 }
