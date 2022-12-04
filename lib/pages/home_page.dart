@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:ms_undraw/ms_undraw.dart';
 import 'package:social_soup/global/app_colors.dart';
+import 'package:social_soup/global/styles/normal.dart';
 import 'package:social_soup/models/recipe.dart';
 import 'package:social_soup/services/recipe_service.dart';
 import 'package:social_soup/widgets/app_bar.dart';
@@ -89,6 +91,8 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 20),
                         if (loading.value)
                           LoadingSpinner()
+                        else if (recipes.isEmpty)
+                          buildEmpty()
                         else
                           ...recipes
                               .map((e) => RecipeCard(e).paddingOnly(bottom: 8)),
@@ -97,4 +101,19 @@ class _HomePageState extends State<HomePage> {
           )),
     );
   }
+
+  Widget buildEmpty() => Column(
+        children: [
+          UnDraw(
+              illustration: UnDrawIllustration.thoughts,
+              color: AppColors.primary,
+              width: Get.width * .3,
+              height: Get.height * .2),
+          Text(
+            "It's lonely around here.\nFind new friends in the explore tab!",
+            textAlign: TextAlign.center,
+            style: NormalStyle(),
+          ),
+        ],
+      ).paddingSymmetric(vertical: Get.height * .2);
 }

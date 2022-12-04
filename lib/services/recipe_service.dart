@@ -1,4 +1,5 @@
 import 'package:bson/src/classes/object_id.dart';
+import 'package:flutter/src/services/text_input.dart';
 import 'package:get/get.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:social_soup/models/recipe.dart';
@@ -53,6 +54,43 @@ class RecipeService {
     final uid = AuthStore.to.currentUser.value!.id;
 
     final pipeline = AggregationPipelineBuilder()
+        .addStage(_joinAuthor())
+        .addStage(_joinStarred(uid))
+        .build();
+
+    final result = await MongoService.db
+        .collection('recipes')
+        .aggregateToStream(pipeline)
+        .toList();
+
+    return result.map((e) => Recipe.fromJson(e).obs).toList();
+  }
+
+  Future create(Map<String, dynamic> dto) async {
+    final recipe = await MongoService.db.collection('recipes').insertOne({
+      "notes": 0,
+      "stars": 0,
+      "_id": ObjectId(),
+      "user": AuthStore.to.currentUser.value!.id,
+      ...dto,
+    });
+    return Recipe.fromJson(recipe.document!);
+  }
+
+  Future delete(Rx<Recipe> recipe) async {
+    final result = await MongoService.db
+        .collection('recipes')
+        .deleteOne({'_id': recipe.value.id});
+    return;
+  }
+
+  Future<List<Rx<Recipe>>> searchByTag(String value) async {
+    final uid = AuthStore.to.currentUser.value!.id;
+
+    final pipeline = AggregationPipelineBuilder()
+        .addStage(Match({
+          'tags': value,
+        }))
         .addStage(_joinAuthor())
         .addStage(_joinStarred(uid))
         .build();

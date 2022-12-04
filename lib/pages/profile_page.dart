@@ -77,7 +77,20 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('Profile'),
+      appBar: CustomAppBar(
+        'Profile',
+        trailing: id == null
+            ? TextButton(
+                onPressed: () async {
+                  await AuthStore.to.logout();
+                  Get.offAllNamed('/login');
+                },
+                child: Text(
+                  'Logout',
+                  style: HeavyStyle(color: AppColors.secondary),
+                ))
+            : null,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: Obx(

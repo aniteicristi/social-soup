@@ -11,6 +11,7 @@ import 'package:social_soup/pages/new_recipe_page.dart';
 import 'package:social_soup/pages/profile_page.dart';
 import 'package:social_soup/pages/recipe_page.dart';
 import 'package:social_soup/pages/splash_page.dart';
+import 'package:social_soup/services/cloud_storage_service.dart';
 import 'package:social_soup/services/mongo_service.dart';
 import 'package:social_soup/services/notes_service.dart';
 import 'package:social_soup/services/reaction_service.dart';
@@ -30,6 +31,7 @@ Future main() async {
   Get.put(RecipeService());
   Get.put(ReactionService());
   Get.put(NotesService());
+  Get.put(CloudStorageService());
 
   //Register stores
 
@@ -51,6 +53,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.white,
         primaryColor: AppColors.primary,
         secondaryHeaderColor: AppColors.secondary,
+        splashColor: AppColors.primary,
+        highlightColor: AppColors.primary.withOpacity(.5),
       ),
       initialRoute: '/splash',
       getPages: [

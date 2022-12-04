@@ -27,6 +27,11 @@ class AuthStore {
     return currentUser;
   }
 
+  Future logout() async {
+    await FirebaseAuth.instance.signOut();
+    currentUser.value = null;
+  }
+
   Future init() async {
     if (FirebaseAuth.instance.currentUser == null) return;
 

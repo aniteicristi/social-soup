@@ -9,6 +9,8 @@ import 'package:social_soup/models/note.dart';
 import 'package:social_soup/models/recipe.dart';
 import 'package:social_soup/services/notes_service.dart';
 import 'package:social_soup/services/reaction_service.dart';
+import 'package:social_soup/services/recipe_service.dart';
+import 'package:social_soup/stores/auth_store.dart';
 import 'package:social_soup/widgets/app_bar.dart';
 import 'package:social_soup/widgets/loading_spinner.dart';
 import 'package:social_soup/widgets/note_card.dart';
@@ -68,7 +70,20 @@ class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar('Recipe'),
+        appBar: CustomAppBar(
+          'Recipe',
+          trailing: recipe.value.user == AuthStore.to.currentUser.value!.id
+              ? TextButton(
+                  onPressed: () async {
+                    await RecipeService.to.delete(recipe);
+                    Get.back();
+                  },
+                  child: Text(
+                    'Delete',
+                    style: HeavyStyle(color: AppColors.secondary),
+                  ))
+              : null,
+        ),
         body: Obx(
           () => Stack(
             children: [

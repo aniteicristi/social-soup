@@ -1,16 +1,17 @@
 # social_soup
 
-A new Flutter project.
+A small social media app realized with Flutter using GetX for state management, MongoDB for database and Firebase for Authentication and Storage.
 
-## Getting Started
+# Screenshots
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![!shot](screenshots/1.png)
+![!shot](screenshots/15.png)
+![!shot](screenshots/2.png)
+![!shot](screenshots/3.png)
+![!shot](screenshots/4.png)
+![!shot](screenshots/5.png)
+![!shot](screenshots/6.png)
+![!shot](screenshots/7.png)
+![!shot](screenshots/8.png)
+![!shot](screenshots/9.png)
+![!shot](screenshots/10.png)

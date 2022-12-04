@@ -128,16 +128,16 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            TextButton(
-              style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all(AppColors.secondary)),
-              onPressed: register,
-              child: const Text(
-                'Register',
-                style: TextStyle(fontSize: 16),
-              ),
-            )
+            // TextButton(
+            //   style: ButtonStyle(
+            //       foregroundColor:
+            //           MaterialStateProperty.all(AppColors.secondary)),
+            //   onPressed: register,
+            //   child: const Text(
+            //     'Register',
+            //     style: TextStyle(fontSize: 16),
+            //   ),
+            // )
           ],
         ),
       ),
