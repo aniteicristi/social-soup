@@ -19,9 +19,11 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(1.seconds);
     await AuthStore.to.init();
     print('AAAAAAA');
-
-    if (AuthStore.to.currentUser.value == null) Get.offAllNamed('/login');
-
+    print(AuthStore.to.currentUser.value?.email);
+    if (AuthStore.to.currentUser.value == null) {
+      Get.offAllNamed('/login');
+      return;
+    }
     Get.offAllNamed('/app');
   }
 

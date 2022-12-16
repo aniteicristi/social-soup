@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
         highlightColor: AppColors.primary.withOpacity(.5),
       ),
       initialRoute: '/splash',
+      routingCallback: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       getPages: [
         GetPage(name: '/splash', page: () => SplashPage()),
         GetPage(name: '/app', page: () => AppPage()),
